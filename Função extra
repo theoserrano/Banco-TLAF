@@ -1,0 +1,33 @@
+def realizar_estatisticas():
+    print("Opção de cálculo de média selecionada")
+    valores = []
+    with open("banco.csv", "r") as f:
+        for linha in f:
+            nome, categoria, valor = linha.split(";")
+            valores.append(float(valor.strip()))
+
+    if valores:
+        media = sum(valores) / len(valores)
+        total = sum(valores)
+        print(f"\nA média dos valores registrados é: R${media:.2f}")
+        print(f"O total dos valores registrados é: R${total}")
+    else:
+        print("Nenhum valor encontrado no banco.")
+
+    categorias = {}
+    total = 0
+
+    with open("banco.csv", "r") as f:
+        for linha in f:
+            nome, categoria, valor = linha.split(";")
+            valor = float(valor.strip())
+            total += valor
+            if categoria in categorias:
+                categorias[categoria] += valor
+            else:
+                categorias[categoria] = valor
+
+    print("Porcentagem por Categoria:")
+    for categoria, valor_da_categoria in categorias.items():
+        porcentagem = (valor_da_categoria / total) * 100
+        print(f"{categoria}: {porcentagem:.2f}%")
