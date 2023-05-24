@@ -49,39 +49,7 @@ def realizar_delecao():
     
     if not item_encontrado:
         print("O item não existe no banco.")
-
-def realizar_atualizacao():
-    print("Opção de atualização selecionada")
-    nomeatualizacao = input("O que você deseja atualizar?").upper()
-    item_encontrado = False
-    with open("banco.csv", "r") as f:
-        linhas = f.readlines()
-    with open("banco.csv", "w") as f:
-        for linha in linhas:
-            if linha.startswith(nomeatualizacao + ";"):
-                novacategoria = input("Qual a nova categoria?").upper()
-                novovalor = input("Qual o novo valor?")
-                f.write(f"{nomeatualizacao};{novacategoria};{novovalor}\n")
-                item_encontrado = True
-                print(f"{nomeatualizacao} atualizado com sucesso!")
-            else:
-               f.write(linha)
-
-    if not item_encontrado:
-        print("O item não existe no banco.")
-
-def realizar_categoria():
-    print("Opção de exibição por categoria selecionada")
-    categoria_escolhida= input("Digite a categoria que deseja exibir: ").upper()
-    print("----------------------------------------------------------")
-    print("\tNome\t\tCategoria\t     Valor")
-    print("----------------------------------------------------------")
-    with open("banco.csv", "r") as f:
-        for linha in f:
-            nome, categoria, valor = linha.split(";")
-            if categoria.strip() == categoria_escolhida:
-                print(f"\t{nome.strip()}\t\t{categoria.strip()}\t\t     R${valor.strip()}")
-               
+                      
 def menu():
     opcao = input(f"\nDeseja iniciar o menu? (S/N): ")
     
