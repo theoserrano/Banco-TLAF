@@ -1,0 +1,11 @@
+def realizar_categoria():
+    print("Opção de exibição por categoria selecionada")
+    categoria_escolhida= input("Digite a categoria que deseja exibir: ").upper()
+    print("----------------------------------------------------------")
+    print("\tNome\t\tCategoria\t     Valor")
+    print("----------------------------------------------------------")
+    with open("banco.csv", "r") as f:
+        for linha in f:
+            nome, categoria, valor = linha.split(";")
+            if categoria.strip() == categoria_escolhida:
+                print(f"\t{nome.strip()}\t\t{categoria.strip()}\t\t     R${valor.strip()}")
