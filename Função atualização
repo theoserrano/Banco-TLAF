@@ -1,0 +1,19 @@
+def realizar_atualizacao():
+    print("Opção de atualização selecionada")
+    nomeatualizacao = input("O que você deseja atualizar?").upper()
+    item_encontrado = False
+    with open("banco.csv", "r") as f:
+        linhas = f.readlines()
+    with open("banco.csv", "w") as f:
+        for linha in linhas:
+            if linha.startswith(nomeatualizacao + ";"):
+                novacategoria = input("Qual a nova categoria?").upper()
+                novovalor = input("Qual o novo valor?")
+                f.write(f"{nomeatualizacao};{novacategoria};{novovalor}\n")
+                item_encontrado = True
+                print(f"{nomeatualizacao} atualizado com sucesso!")
+            else:
+               f.write(linha)
+
+    if not item_encontrado:
+        print("O item não existe no banco.")
