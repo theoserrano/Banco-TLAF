@@ -81,4 +81,44 @@ def realizar_categoria():
             nome, categoria, valor = linha.split(";")
             if categoria.strip() == categoria_escolhida:
                 print(f"\t{nome.strip()}\t\t{categoria.strip()}\t\t     R${valor.strip()}")
+               
+def menu():
+    opcao = input(f"\nDeseja iniciar o menu? (S/N): ")
+    
+    if opcao.upper() == "S":
+        while True:
+            mostrarmenu()
+            opcao = input().upper()
+            
+            if opcao == "1":
+                realizar_leitura()
+                break
+            elif opcao == "2":
+                realizar_adicao()
+                break
+            elif opcao == "3":
+                realizar_delecao()
+                break
+            elif opcao == "4":
+                realizar_atualizacao()
+                break
+            elif opcao == "5":
+                realizar_categoria()
+                break
+            elif opcao == "6":
+                realizar_estatisticas()
+                break
+            else:
+                print("Opção inválida!")
+                print("Digite uma opção válida")
+    elif opcao.upper() == "N":
+        print("Programa encerrado.")
+        return
+    else:
+        print("Opção inválida!")
+        print("Digite uma opção válida")
+        
+    menu()
+
+menu()
                 
